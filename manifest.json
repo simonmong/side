@@ -1,0 +1,53 @@
+{
+  "name": "랭귀지0817",
+  "version": "0.2",
+  "manifest_version": 3,
+  "description": "사이드패널.",
+  "permissions": ["sidePanel", "tabs", "identity" , "identity.email","storage"],
+
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/bookmark.png",
+        "assets/play.png",
+        "assets/delete.png",
+        "assets/save.png"
+  
+      ],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ],
+  
+  "icons": {
+    "128": "images/icon-128.png",
+    "16": "images/icon-16.png"
+  },
+  
+
+  "action": {
+    
+    "default_icon": {
+      "16": "assets/ext-icon.png",
+      "24": "assets/ext-icon.png",
+      "32": "assets/ext-icon.png"
+    },
+    "default_title": "랭귀지 - 엑션아이콘"
+  },
+
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}
+
