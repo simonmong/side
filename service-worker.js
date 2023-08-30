@@ -1,60 +1,17 @@
 
-console.log("I am background script!3s");
+console.log("I am background script!");
 
-function delay(ms){
-  return new Promise(resolve => setTimeout(resolve,ms));
-}
-
-
-
-async function getApple() {
-
-  await delay(1000);
-  throw 'error';
-  return 'appple';
-
- 
-  
-}
-
-async function getBanana() {
-
-  await delay(1000);
-  return 'banana';
-  
-}
-
-async function pickFruits() { 
-
-  try{
-
-    
-  const apple = await getApple();
-  const banana = await getBanana() ;
-  return  apple + banana + banana;
-
-  }catch(e){
-
-    console.log(e);
-
-  }
-
-    
-
-
-  
-}
-
-pickFruits().then(console.log)
-
-
-
-
-
-
- 
-
-
+// chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+//   chrome.tabs.sendMessage(
+//     tabs[0].id,
+//     { msg: "example-send-to-content-script" },
+//     (response) => {
+//       if (response) {
+//         console.log(response);
+//       }
+//     }
+//   );
+// });
 
 
 // Allows users to open the side panel by clicking on the action toolbar icon

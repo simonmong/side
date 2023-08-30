@@ -3,7 +3,7 @@
   "version": "0.3",
   "manifest_version": 3,
   "description": "사이드패널.",
-  "permissions": ["sidePanel", "tabs", "identity" , "identity.email","storage"],
+  "permissions": ["sidePanel", "tabs", "identity" , "identity.email","storage","webNavigation"],
 
   "background": {
     "service_worker": "service-worker.js",
