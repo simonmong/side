@@ -1,6 +1,6 @@
 {
   "name": "랭귀지0817",
-  "version": "0.2",
+  "version": "0.3",
   "manifest_version": 3,
   "description": "사이드패널.",
   "permissions": ["sidePanel", "tabs", "identity" , "identity.email","storage"],
