@@ -1,49 +1,59 @@
-
 // chrome.identity 로 구글 이메일을 가져온다.
-
-chrome.identity.getProfileUserInfo({ accountStatus: "ANY" }, function (info) {
+//
+chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' }, function (info) {
   if (info.email.length < 10) {
-    document.querySelector("notification").value = "구글계정에 로그인해주세요.";
-    return;
+    document.querySelector('notification').value = '구글계정에 로그인해주세요.'
+    return
   }
-    document.getElementById("googleIdentity").value = JSON.stringify(info);
-  
-});
-// 가져온 구글 이메일로 서버에 회원가입 페이지로 이동 
+  email = info.email
+  document.getElementById('googleIdentity').value = JSON.stringify(info)
+})
+// 가져온 구글 이메일로 서버에 회원가입 페이지에 연결
 
-
-document.getElementById("signUpbtn").addEventListener("click", async function() {
+document.getElementById('signUpbtn').addEventListener('click', function () {
   chrome.tabs.create({
-    url: "http://www.secondlearner.com/"
-  });
-});
+    url: 'http://secondlearner.com/bbs/login.php',
+    active: false
+  })
+})
+//
+//
 
+document.getElementById('logInbtn').addEventListener('click', function () {
+  infoVal = document.getElementById('googleIdentity').value
+  chrome.tabs.create({
+    url:
+      'http://www.secondlearner.com/gchrome/gLogin.php?data=' +
+      encodeURIComponent(infoVal),
+    active: false
+  })
+})
 
-// 로그인 버튼을 클릭하면 서버에 로그인 
+async function fetchData () {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+  const data = await response.json()
+  captionFromServer.innerHTML = JSON.stringify(data)
+}
 
-
-document.getElementById("logInbtn").addEventListener("click", async function() {
-  
-
-
-});
-
-
-
-
+document.getElementById('fetchCaptionbtn').addEventListener('click', fetchData)
 
 //1. 유튜브 페이지 로딩되면 비디오 id를 찾는다.
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete') {  
+  if (changeInfo.status === 'complete') {
     /// 현재 탭 가져와서 비디오 아이디 만들기
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      const activeTab = tabs[0]
+
       if (tab.url.indexOf('youtube.com/watch') != -1) {
-        const queryParameters = tab[0].url.split('?')[1]
+        const queryParameters = activeTab.url.split('?')[1]
         const urlParameters = new URLSearchParams(queryParameters)
-        videoId.innerHTML = urlParameters.get('v')
+        output = urlParameters.get('v')
+        videoId.innerHTML = output
       } else {
-        videoId.innerHTML = tab.url
+        videoId.innerHTML = activeTab.url
       }
+    })
   } //if
 }) // addListener
-
