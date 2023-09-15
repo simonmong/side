@@ -26,24 +26,21 @@
     <input type="button" id="fetchCaptionbtnGET" value="서버 JSON GET ">
     <input type="button" id="fetchCaptionbtnPOST" value="서버 JSON POST">
 
-    
-
-    <p id="captionFromServer" style="background-color:tomato;">자막</p>
-
+    <textarea name="captionFrom" id="captionFrom" cols="30" rows="5">captionFrom </textarea>
 
     <p id="videoId" style="background-color:rgb(175, 255, 71);">video id</p>
 
-
-
-
-
-    
- 
-
     <hr style="width:100%;text-align:left;margin-left:0">
 
+    <table class="table table-striped">
+      <tr class="bg-info">
+        <th>No</th>
+        <th>text</th>
+        <th>no of words</th>
+      </tr>
 
-    
+      <tbody id="myTable"></tbody>
+    </table>
 
     <p id="select-a-word">자막 자막 </p>
    

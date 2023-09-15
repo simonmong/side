@@ -17,7 +17,6 @@ document.getElementById("signUpbtn").addEventListener("click", function () {
   });
 });
 //
-//
 
 document.getElementById("logInbtn").addEventListener("click", function () {
   infoVal = document.getElementById("googleIdentity").value;
@@ -29,44 +28,56 @@ document.getElementById("logInbtn").addEventListener("click", function () {
   });
 });
 
-// json GET 방식
-async function fetchDataGET() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "carbonfootprint1.p.rapidapi.com",
-      "x-rapidapi-key": "your_api_key",
-    },
-  });
+async function fetchData() {
+  infoVal = document.getElementById("googleIdentity").value;
+
+  const response = await fetch(
+    "http://www.secondlearner.com/gchrome/itemCaption.php?it_id=1693798169"
+  );
 
   const data = await response.json();
-  captionFromServer.innerHTML = JSON.stringify(data);
+  
+  document.getElementById("captionFrom").value = JSON.stringify(data);
+  
+  buildTable(data);
 }
 
-// json post 방식
-async function fetchDataPOST() {
-  const newProduct = {
-    id: 1017,
-    description: "New Phone Z",
-    price: 433,
-  };
 
-  const response = await fetch("https://dummyjson.com/products/add", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify(newProduct),
-  });
-  captionFromServer.innerHTML = response.status;
+
+fetch("names.json")
+.then(res => res.json())
+.then(json => {
+
+    let mountains = json;
+    let table = document.querySelector("table");
+    let data = Object.keys(mountains[0]);
+    generateTable(table, mountains); // generate the table first
+    generateTableHead(table, data); // then the head
+
+})
+
+
+
+function buildTable(data) {
+  let table = document.getElementById("myTable");
+
+  document.getElementById("notification").innerHTML = JSON.stringify(
+    Object.keys(data)
+  );
+
+  for (let i = 0; i < data.length; i++) {
+    let row = `<tr>
+          <td>${data}</td>
+          <td>${data[i].age}</td>
+          <td>${data[i].birthdate}</td>
+        </tr>`;
+    table.innerHTML += row;
+  }
 }
 
 document
   .getElementById("fetchCaptionbtnGET")
-  .addEventListener("click", fetchDataGET);
-document
-  .getElementById("fetchCaptionbtnPOST")
-  .addEventListener("click", fetchDataPOST);
+  .addEventListener("click", fetchData);
 
 //1. 유튜브 페이지 로딩되면 비디오 id를 찾는다.
 
