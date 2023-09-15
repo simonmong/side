@@ -1,13 +1,13 @@
-const getData = async () => {
-  const res = await fetch("jasonarray.json");
-  const data = await res.json();
+const getJasonData = async () => {
+  const response = await fetch("jasonarray.json");
+  const data = await response.json();
   return data;
 };
 
 const displayCaptions = async () => {
-  const payload = await getData();
+  const data = await getJasonData();
 
-  let dataDisplay = payload.caption
+  let dataDisplay = data.caption
     .map((object) => {
       const { id, text, body } = object;
 
