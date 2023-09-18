@@ -4,7 +4,7 @@ const getJasonData = async () => {
   return data;
 };
 
-const displayCaptions = async () => {
+const getDataDisplayCaptions = async () => {
   const data = await getJasonData();
 
   let dataDisplay = data.caption
@@ -25,4 +25,4 @@ const displayCaptions = async () => {
   display.innerHTML = dataDisplay;
 };
 
-export { displayCaptions };
+export { getDataDisplayCaptions };

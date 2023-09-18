@@ -1,3 +1,3 @@
-import { displayCaptions } from "./getJason.js";
+import { getDataDisplayCaptions } from "./getJason.js";
 
-displayCaptions();
+getDataDisplayCaptions();
